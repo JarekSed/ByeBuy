@@ -1,0 +1,23 @@
+{
+  "name" : "ByeBuy",
+  "version" : "1.0.1",
+  "description" : "Helps the user avoid impulse purchases",
+  "background" : {
+    "scripts": ["background.js"]
+  },
+  "permissions" : [ "experimental" ],
+  "icons" : {
+    "16" : "sandwich-16.png",
+    "48" : "sandwich-48.png",
+    "128" : "sandwich-128.png"
+  },
+  "content_scripts" : [
+    {
+      "matches" : [ "http://*/*" , "https://*/*"],
+      "js" : [ "contentscript.js" ],
+      "run_at" : "document_idle",
+      "all_frames" : false
+    }
+  ],
+  "manifest_version": 2
+}
