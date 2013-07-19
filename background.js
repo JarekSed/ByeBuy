@@ -5,13 +5,6 @@ function onRequest(request, sender, sendResponse) {
   // The number of matches is sent in the request - pass it to the
   // infobar.
   var url = "infobar.html#" + request.count;
-
-  // Show the infobar on the tab where the request was sent.
-  chrome.experimental.infobars.show({
-    tabId: sender.tab.id,
-    path: url
-  });
-
     //console.log(request.count);
   // Return nothing to let the connection be cleaned up.
   sendResponse({});
