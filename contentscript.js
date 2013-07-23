@@ -26,7 +26,7 @@ for (var regex in regexes) {
 
 if (Object.keys(regexes).length - num_found <= NUM_ACCEPTABLE_MISSES){
     console.log("looks like we found enough to determine this is a purchase page");
-    var NewDialog = $('<div id="MenuDialog"><img src="' + getRandomImageURL() + '" /></div>');
+    var NewDialog = $('<div id="MenuDialog"><center><img src="' + getRandomImageURL() + '" /></center></div>');
     NewDialog.dialog({
         modal: true,
         title: "Really?",
