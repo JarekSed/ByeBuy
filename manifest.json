@@ -7,9 +7,7 @@
   },
   "permissions" : [],
   "icons" : {
-    "16" : "sandwich-16.png",
-    "48" : "sandwich-48.png",
-    "128" : "sandwich-128.png"
+    "48" : "no.png"
   },
   "content_scripts" : [
     {
