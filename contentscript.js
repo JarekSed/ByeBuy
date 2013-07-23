@@ -26,7 +26,7 @@ for (var regex in regexes) {
 
 if (Object.keys(regexes).length - num_found <= NUM_ACCEPTABLE_MISSES){
     console.log("looks like we found enough to determine this is a purchase page");
-    var NewDialog = $('<div id="MenuDialog"><img src="' + getRandomImageURL() + '" /></p></div>');
+    var NewDialog = $('<div id="MenuDialog"><img src="' + getRandomImageURL() + '" /></div>');
     NewDialog.dialog({
         modal: true,
         title: "Really?",
@@ -63,6 +63,6 @@ function getRawElements(tags) {
 function getRandomImageURL(){
     //TODO(jarek): This is horrible, we shouldn't have # of images hardcoded, fix this
     var img_index = Math.floor(Math.random()*26)
-    return chrome.extension.getURL("imgs/" + img_index + ".gif");
+    return "http://jsedlacek.info/byebuy/imgs/random.php";
 
 }
