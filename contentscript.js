@@ -1,26 +1,51 @@
-// Copyright (c) 2010 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-var regexes = { "number" : /number|card.?#|card.?no|ccnum/gi, "name" : /card.?holder|name.?on.?card|ccname|owner/gi}
-var found_all = true;
-for( var regex in regexes) {
-    matches = document.body.innerText.match(regexes[regex]);
-    if (!matches){
+// These are the regexes used to identify if a given element is relevant to credit cards or payment.
+// The key is just a description, the value is the regex used to match.
+var regexes = { "number" : /number|card.?#|card.?no|ccnum/gi,
+    "name" : /card.?holder|name.?on.?card|ccname|owner/gi,
+    "order" : /place.*order/gi,
+    "payment" : /payment.?method|payment.?instrument|payment.*name/gi,
+    "checkout" : /checkout|check.?out/gi};
+
+// This variable controls how many of the regexes are allowed to miss, and still consider
+// the page overall to be a hit.
+var NUM_ACCEPTABLE_MISSES = 2;
+
+// These are the HTML elements we will examine to see if they match any of the regexes. (Searching the whole page would have a ton of false positives).
+var tags = ["form", "input"];
+var num_found = 0;
+for (var regex in regexes) {
+    rawHTML = getRawElements(tags);
+    matches = rawHTML.match(regexes[regex]);
+    if (matches){
+        console.log("Found " + regex);
+        num_found++;
+    } else {
         console.log("couldn't find the regex for " + regex);
-        found_all = false;
-        break;
     }
-    console.log("Found " + regex);
 }
 
-if(found_all){
-    console.log("looks like we found everything");
+if (Object.keys(regexes).length - num_found <= NUM_ACCEPTABLE_MISSES){
+    console.log("looks like we found enough to determine this is a purchase page");
     alert("Looks like you are buying things");
     alert("Are you sure you want to buy things?");
     alert("Buying things costs money!");
     var payload = {
-        count: matches.count()
+        count: 1
     };
     chrome.extension.sendRequest(payload, function(response) {});
 }
 
+// This function returns a string containing the raw HTML for all elements matching the given tags
+function getRawElements(tags) {
+    rawHTML = "";
+    for (var i = 0; i < tags.length; i++) {
+        tag = tags[i];
+        elements = document.getElementsByTagName(tag);
+            for (var j =0; j < elements.length; j++) {
+                var wrap = document.createElement('div');
+                wrap.appendChild(elements[j].cloneNode(true));
+                rawHTML += wrap.innerHTML;
+            }
+    }
+    return rawHTML;
+}
