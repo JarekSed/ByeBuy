@@ -14,10 +14,12 @@
   "content_scripts" : [
     {
       "matches" : [ "http://*/*" , "https://*/*"],
-      "js" : [ "contentscript.js" ],
+      "js" : [ "jquery-1.10.2.min.js", "jquery-ui.min.js", "contentscript.js" ],
+      "css" : ["jquery-ui.min.css"],
       "run_at" : "document_idle",
       "all_frames" : false
     }
   ],
+  "web_accessible_resources": ["jquery-1.10.2.min.map", "imgs/*"] ,
   "manifest_version": 2
 }

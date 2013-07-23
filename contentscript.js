@@ -26,13 +26,23 @@ for (var regex in regexes) {
 
 if (Object.keys(regexes).length - num_found <= NUM_ACCEPTABLE_MISSES){
     console.log("looks like we found enough to determine this is a purchase page");
+    var NewDialog = $('<div id="MenuDialog"><img src="' + getRandomImageURL() + '" /></p></div>');
+    NewDialog.dialog({
+        modal: true,
+        title: "Really?",
+        width: "600px",
+        buttons: [
+    {text: "Cancel", click: function() {$(this).dialog("close")}}
+    ]
+    });
+    NewDialog.dialog("open");
     alert("Looks like you are buying things");
     alert("Are you sure you want to buy things?");
     alert("Buying things costs money!");
     var payload = {
         count: 1
     };
-    chrome.extension.sendRequest(payload, function(response) {});
+//    chrome.extension.sendRequest(payload, function(response) {});
 }
 
 // This function returns a string containing the raw HTML for all elements matching the given tags
@@ -48,4 +58,11 @@ function getRawElements(tags) {
             }
     }
     return rawHTML;
+}
+
+function getRandomImageURL(){
+    //TODO(jarek): This is horrible, we shouldn't have # of images hardcoded, fix this
+    var img_index = Math.floor(Math.random()*26)
+    return chrome.extension.getURL("imgs/" + img_index + ".gif");
+
 }
