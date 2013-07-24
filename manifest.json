@@ -2,9 +2,6 @@
   "name" : "ByeBuy",
   "version" : "1.0.1",
   "description" : "Helps the user avoid impulse purchases",
-  "background" : {
-    "scripts": ["background.js"]
-  },
   "permissions" : [],
   "icons" : {
     "48" : "no.png"
