@@ -36,9 +36,9 @@ if (Object.keys(regexes).length - num_found <= NUM_ACCEPTABLE_MISSES){
     ]
     });
     NewDialog.dialog("open");
-    alert("Looks like you are buying things");
-    alert("Are you sure you want to buy things?");
-    alert("Buying things costs money!");
+    alert("Hooman........ WUT R U DOOIN");
+    alert("...Seriously, is this worth giving up an annual trip to Atlantis and a home theater?");
+    alert("IT'S NOT WORTH IT");
     var payload = {
         count: 1
     };
