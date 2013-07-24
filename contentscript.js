@@ -2,7 +2,7 @@
 // The key is just a description, the value is the regex used to match.
 var regexes = { "number" : /card.?#|card.?no|ccnum/gi,
     "name" : /card.?holder|name.?on.?card|ccname/gi,
-    "order" : /place.*order/gi,
+    "order" : /place.*order|cart/gi,
     "payment" : /payment.?method|payment.?instrument|payment.?type|payment.*name/gi,
     "checkout" : /checkout|check.?out/gi};
 
