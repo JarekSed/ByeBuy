@@ -17,7 +17,7 @@ for (var regex in regexes) {
     rawHTML = getRawElements(tags);
     matches = rawHTML.match(regexes[regex]);
     if (matches){
-        console.log("Found " + regex);
+        console.log("Found " + regex + ": '" + matches[0] + "'");
         num_found++;
     } else {
         console.log("couldn't find the regex for " + regex);
